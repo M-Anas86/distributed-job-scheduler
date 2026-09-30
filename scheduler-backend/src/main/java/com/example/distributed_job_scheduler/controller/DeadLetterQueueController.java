@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/jobs")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:4173")
 public class DeadLetterQueueController {
 
     private final DeadLetterQueueService deadLetterQueueService;

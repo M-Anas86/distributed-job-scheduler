@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/workers")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:4173")
 @RequiredArgsConstructor
 public class WorkerController {
 

@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/jobs")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:4173")
 @RequiredArgsConstructor
 public class JobController {
     private final JobService jobService;
