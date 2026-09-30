@@ -170,7 +170,7 @@ function Dashboard() {
   // UI
   // =========================
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-200 p-3">
       {/* =========================
           HEADER
       ========================= */}
@@ -197,18 +197,18 @@ function Dashboard() {
         {/* Refresh */}
         <div className="flex items-center gap-3">
           <button
-            onClick={fetchJobs}
+            onClick={() => window.location.reload()}
             className="
-              flex items-center justify-center gap-2
-              px-4 py-2.5
-              bg-white dark:bg-gray-800
-              border border-gray-200 dark:border-gray-700
-              text-gray-700 dark:text-gray-200
-              rounded-lg
-              shadow-sm
-              hover:bg-gray-50 dark:hover:bg-gray-700
-              transition
-            "
+      flex items-center justify-center gap-2
+      px-4 py-2.5
+      bg-white dark:bg-gray-800
+      border border-gray-200 dark:border-gray-700
+      text-gray-700 dark:text-gray-200
+      rounded-lg
+      shadow-sm
+      hover:bg-gray-50 dark:hover:bg-gray-700
+      transition
+    "
           >
             <span>↻</span>
             Refresh
@@ -419,99 +419,73 @@ function Dashboard() {
                 {jobs.slice(0, 10).map((job) => (
                   <tr
                     key={job.id}
+                    onClick={() =>
+                      navigate(`/jobs/${job.id}`, { state: { job } })
+                    }
                     className="
-      border-b
-      border-gray-100
-      transition
-      hover:bg-gray-50
-      dark:border-gray-700
-      dark:hover:bg-gray-700/50
-    "
+        cursor-pointer
+        border-b
+        border-gray-100
+        transition
+        hover:bg-gray-50
+        dark:border-gray-700
+        dark:hover:bg-gray-700/50
+      "
                   >
                     {/* ID */}
                     <td className="px-6 py-4">
-                      <Link
-                        to={`/jobs/${job.id}`}
-                        state={{ job }}
-                        className="
-          font-mono
-          text-sm
-          font-semibold
-          text-blue-600
-          transition
-          hover:text-blue-800
-          hover:underline
-          dark:text-blue-400
-          dark:hover:text-blue-300
-        "
-                      >
+                      <span className="font-mono text-sm font-semibold text-blue-600 dark:text-blue-400">
                         #{job.id}
-                      </Link>
+                      </span>
                     </td>
 
                     {/* Job Name */}
-
                     <td className="px-6 py-4">
-                      <Link
-                        to={`/jobs/${job.id}`}
-                        state={{ job }}
-                        className="
-                          font-medium
-                          text-gray-900
-                          transition
-                          hover:text-blue-600
-                          hover:underline
-                          dark:text-white
-                          dark:hover:text-blue-400
-                        "
-                      >
+                      <span className="font-medium text-gray-900 dark:text-white">
                         {job.name || "Unnamed Job"}
-                      </Link>
+                      </span>
                     </td>
 
                     {/* Status */}
-
                     <td className="px-6 py-4">
                       <span
                         className={`
-                          inline-flex
-                          items-center
-                          gap-2
-                          px-3 py-1.5
-                          rounded-full
-                          border
-                          text-xs
-                          font-semibold
-                          ${getStatusStyle(job.status)}
-                        `}
+            inline-flex
+            items-center
+            gap-2
+            px-3 py-1.5
+            rounded-full
+            border
+            text-xs
+            font-semibold
+            ${getStatusStyle(job.status)}
+          `}
                       >
                         <span
                           className={`
-                            w-2 h-2
-                            rounded-full
-                            ${getStatusDot(job.status)}
-                          `}
+              w-2 h-2
+              rounded-full
+              ${getStatusDot(job.status)}
+            `}
                         ></span>
-
                         {job.status || "UNKNOWN"}
                       </span>
                     </td>
 
                     {/* Worker */}
-
                     <td className="px-6 py-4">
                       {job.workerId ? (
                         <span
                           className="
-                            inline-flex
-                            items-center
-                            px-2.5 py-1
-                            rounded-md
-                            bg-gray-100 dark:bg-gray-700
-                            text-gray-700 dark:text-gray-200
-                            text-sm
-                            font-mono
-                          "
+              inline-flex
+              items-center
+              px-2.5 py-1
+              rounded-md
+              bg-gray-100 dark:bg-gray-700
+              text-gray-700 dark:text-gray-200
+              text-sm
+              font-mono
+            "
                         >
                           {job.workerId}
                         </span>
@@ -521,7 +495,6 @@ function Dashboard() {
                     </td>
 
                     {/* Retry */}
-
                     <td className="px-6 py-4">
                       <span className="text-sm text-gray-600 dark:text-gray-300">
                         {job.retryCount ?? 0}
@@ -529,7 +502,6 @@ function Dashboard() {
                     </td>
 
                     {/* Created */}
-
                     <td className="px-6 py-4">
                       <span className="text-sm text-gray-500 dark:text-gray-400">
                         {job.createdAt

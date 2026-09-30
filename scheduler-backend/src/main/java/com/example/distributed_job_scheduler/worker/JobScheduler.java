@@ -38,6 +38,8 @@ public class JobScheduler {
             return;
         }
 
+        jobWorker.adjustWorkerCount(jobs.size());
+
         System.out.println(
                 "Job found : " + jobs.size()
         );
@@ -98,18 +100,19 @@ public class JobScheduler {
                                 job.getId()
                 );
 
-            } else {
-
-                /*
-                 * This should normally not happen because
-                 * hasAvailableSlot() was checked above.
-                 */
-                System.out.println(
-                        "Worker [" + workerId +
-                                "] could not submit Job ID : " +
-                                job.getId()
-                );
-            }
+              }
+//            else {
+//
+//                /*
+//                 * This should normally not happen because
+//                 * hasAvailableSlot() was checked above.
+//                 */
+//                System.out.println(
+//                        "Worker [" + workerId +
+//                                "] could not submit Job ID : " +
+//                                job.getId()
+//                );
+//            }
         }
     }
 

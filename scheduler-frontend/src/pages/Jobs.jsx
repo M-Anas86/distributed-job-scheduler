@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import JobSearchFilter from "../components/JobSearchFilter";
 
 function Jobs() {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const [showForm, setShowForm] = useState(false);
 
@@ -800,141 +801,99 @@ function Jobs() {
                   <th className="px-6 py-4 font-semibold">Action</th>
                 </tr>
               </thead>
-
               <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
-                {currentJobs.map((job) => (
+                {jobs.slice(0, 10).map((job) => (
                   <tr
                     key={job.id}
+                    onClick={() =>
+                      navigate(`/jobs/${job.id}`, { state: { job } })
+                    }
                     className="
-                      border-b
-                      border-gray-100
-                      transition
-                      hover:bg-gray-50
-                      dark:border-gray-700
-                      dark:hover:bg-gray-700/50
-                    "
+        cursor-pointer
+        border-b
+        border-gray-100
+        transition
+        hover:bg-gray-50
+        dark:border-gray-700
+        dark:hover:bg-gray-700/50
+      "
                   >
+                    {/* ID */}
                     <td className="px-6 py-4">
-                      <Link
-                        to={`/jobs/${job.id}`}
-                        state={{ job }}
-                        className="
-                          font-mono
-                          text-sm
-                          font-semibold
-                          text-blue-600
-                          transition
-                          hover:text-blue-800
-                          hover:underline
-                          dark:text-blue-400
-                          dark:hover:text-blue-300
-                        "
-                      >
+                      <span className="font-mono text-sm font-semibold text-blue-600 dark:text-blue-400">
                         #{job.id}
-                      </Link>
+                      </span>
                     </td>
 
+                    {/* Job Name */}
                     <td className="px-6 py-4">
-                      <Link
-                        to={`/jobs/${job.id}`}
-                        state={{ job }}
-                        className="
-                          font-medium
-                          text-gray-900
-                          transition
-                          hover:text-blue-600
-                          hover:underline
-                          dark:text-white
-                          dark:hover:text-blue-400
-                        "
-                      >
+                      <span className="font-medium text-gray-900 dark:text-white">
                         {job.name || "Unnamed Job"}
-                      </Link>
+                      </span>
                     </td>
 
+                    {/* Status */}
                     <td className="px-6 py-4">
                       <span
                         className={`
-                          inline-flex
-                          items-center
-                          rounded-full
-                          border
-                          px-3
-                          py-1.5
-                          text-xs
-                          font-semibold
-                          ${getStatusStyle(job.status)}
-                        `}
+            inline-flex
+            items-center
+            gap-2
+            px-3 py-1.5
+            rounded-full
+            border
+            text-xs
+            font-semibold
+            ${getStatusStyle(job.status)}
+          `}
                       >
                         <span
                           className={`
-                            mr-2
-                            h-2
-                            w-2
-                            rounded-full
-                            ${getStatusDot(job.status)}
-                          `}
+              w-2 h-2
+              rounded-full
+              ${getStatusDot(job.status)}
+            `}
                         ></span>
-
                         {job.status || "UNKNOWN"}
                       </span>
                     </td>
 
-                    <td className="px-6 py-4">
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {job.priority}
-                      </span>
-                    </td>
-
+                    {/* Worker */}
                     <td className="px-6 py-4">
                       {job.workerId ? (
                         <span
                           className="
-                            inline-flex
-                            items-center
-                            rounded-md
-                            bg-gray-100
-                            px-2.5
-                            py-1
-                            font-mono
-                            text-sm
-                            text-gray-700
-                            dark:bg-gray-700
-                            dark:text-gray-200
-                          "
+              inline-flex
+              items-center
+              px-2.5 py-1
+              rounded-md
+              bg-gray-100 dark:bg-gray-700
+              text-gray-700 dark:text-gray-200
+              text-sm
+              font-mono
+            "
                         >
                           {job.workerId}
                         </span>
                       ) : (
-                        <span className="text-gray-400 dark:text-gray-500">
-                          —
-                        </span>
+                        <span className="text-gray-400">—</span>
                       )}
                     </td>
 
+                    {/* Retry */}
                     <td className="px-6 py-4">
-                      {job.status === "PENDING" || job.status === "RUNNING" ? (
-                        <button
-                          type="button"
-                          onClick={() => handleCancel(job.id)}
-                          className="
-                            rounded-lg
-                            bg-red-500
-                            px-3
-                            py-2
-                            text-white
-                            transition
-                            hover:bg-red-600
-                            dark:hover:bg-red-400
-                          "
-                        >
-                          Cancel
-                        </button>
-                      ) : (
-                        <span className="text-gray-400 dark:text-gray-500">
-                          —
-                        </span>
-                      )}
+                      <span className="text-sm text-gray-600 dark:text-gray-300">
+                        {job.retryCount ?? 0}
+                      </span>
+                    </td>
+
+                    {/* Created */}
+                    <td className="px-6 py-4">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        {job.createdAt
+                          ? new Date(job.createdAt).toLocaleString()
+                          : "—"}
+                      </span>
                     </td>
                   </tr>
                 ))}
