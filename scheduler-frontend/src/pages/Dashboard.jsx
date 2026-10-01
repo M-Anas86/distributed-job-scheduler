@@ -14,7 +14,7 @@ function Dashboard() {
   const fetchJobs = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/jobs?_=${Date.now()}`,
+        `${import.meta.env.VITE_API_URL}/jobs?_=${Date.now()}`,
         {
           cache: "no-store",
         },

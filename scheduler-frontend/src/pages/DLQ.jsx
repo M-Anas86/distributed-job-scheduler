@@ -10,7 +10,8 @@ function DLQ() {
   // =========================
   const fetchDeadJobs = async () => {
     try {
-      const response = await fetch("http://localhost:8000/jobs/dead");
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/dead`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch dead jobs");

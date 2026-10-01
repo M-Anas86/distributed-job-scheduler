@@ -50,7 +50,8 @@ function Jobs() {
   const fetchJobs = () => {
     setLoading(true);
 
-    fetch("http://localhost:8000/jobs")
+    fetch(
+      `${import.meta.env.VITE_API_URL}/jobs`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch jobs");

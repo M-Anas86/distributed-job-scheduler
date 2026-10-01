@@ -15,7 +15,7 @@ function JobDetails() {
         setLoading(true);
         setError("");
 
-        const response = await fetch(`http://localhost:8000/jobs/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`);
 
         if (!response.ok) {
           throw new Error("Job not found");
