@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
-import Jobs from "./pages/jobs";
+import Jobs from "./pages/Jobs";
 import Workers from "./pages/Workers";
 import DLQ from "./pages/DLQ";
 import JobDetails from "./pages/JobDetails";
