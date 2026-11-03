@@ -11,7 +11,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/jobs")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173",
+        originPatterns = "https://distributed-job-scheduler-12i1.vercel.app")
 public class DeadLetterQueueController {
 
     private final DeadLetterQueueService deadLetterQueueService;

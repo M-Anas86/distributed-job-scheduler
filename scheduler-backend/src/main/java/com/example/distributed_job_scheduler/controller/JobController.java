@@ -13,7 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/jobs")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:5173",
+        originPatterns = "https://distributed-job-scheduler-12i1.vercel.app")
 @RequiredArgsConstructor
 public class JobController {
     private final JobService jobService;

@@ -1,0 +1,13 @@
+*   [33m87f5d27[m[33m ([m[1;35mrefs/stash[m[33m)[m On main: Save dashboard changes before sync
+[31m|[m[32m\[m  
+[31m|[m * [33m48a78e5[m index on main: 6193cd3 Prepare backend for Render deployment
+[31m|[m[31m/[m  
+* [33m6193cd3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Prepare backend for Render deployment
+[32m|[m * [33mf370bb5[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Refactor database configuration in application.properties
+[32m|[m[32m/[m  
+* [33mf2e605e[m prepare for deploy frontend
+* [33m28c3b8f[m prepare for deploy frontend
+* [33mcfbde5a[m Allow frontend origin
+* [33m6309296[m Add Docker configuration for deployment
+* [33m0374af4[m Add Docker configuration for deployment
+* [33m244dfd5[m Add Docker configuration for deployment
